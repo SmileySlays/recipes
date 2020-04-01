@@ -1,0 +1,68 @@
+<html style="background-color: rgb(207, 211, 211);">
+    <style type="text/css">
+        h1, h2 {
+            text-align: center;
+        }
+        #wrap {
+            width: 55%;
+            margin: 0 auto;
+        }
+
+        #left_col {
+            float: left;
+            width: 60%;
+        }
+        #right_col {
+            float: right;
+            width: 30%;
+        }
+    </style>
+
+
+    <h1>Homepage: Recipes by Chefs!</h1>
+    <h2>
+        {% if user.is_authenticated %}
+            Welcome home, 
+            {% if request.user.is_staff %}
+                ADMIN:  
+            {% endif %}
+            "{{request.user}}"
+            <br>Wanna <a href="http://localhost:8000/logout/"><button>Log outta</button></a> here?
+        {% else %}
+            Welcome Home, [Guest User] <a href="login/"><button>Login Here</button></a>
+                 or 
+                <a href="signup/"><button>Signup Here</button></a>
+            <p></p>
+        {% endif %}
+    </h2>
+
+
+    <div id="wrap">
+        <section id="left_col">
+        {% for each in recipes %}
+                <ul>
+                    <li>
+                        <a href="/myitem/{{each.id}}/">{{ each.title }}</a>
+                    </li>
+                </ul>
+        {% endfor %}
+        </section>
+
+        <section id="right_col">
+            Would you like to...
+            <div>
+                <a href="/addrecipe/" style="background-color: rgb(82, 206, 206);">Add Another Recipe?</a>
+            </div>
+
+            {% if request.user.is_staff %}
+                <br>or maybe...
+                    <p>
+                        <a href="/addauthor/" style="background-color: rgb(82, 206, 206);">Add Another Author?</a>
+                    </p>
+            {% endif %}
+
+        </section>
+
+
+    </div>
+</html>

@@ -1,0 +1,17 @@
+<body style="background-color:rgba(216, 197, 197, 0.979)">
+    <h1>Recipe Details Page</h1>
+    <!-- # author, author_id, description, id, instructions, time_required, title -->
+    <div><a href="/" style="background-color: rgb(140, 187, 187);">Click me to go to homepage</a></div>
+    {% if request.user.is_superuser or item.author is request.user %}
+    <button onclick="window.location.href='/recipeedit/{{ item.pk }}';"> Edit Recipe</button>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+    <button onclick="window.location.href='/favorite/{{ item.pk }}';"> Favorite</button>
+    {% endif %}
+
+    <h3>Title: {{ item.title }}</h3>
+    <p>Author: <a href='http://localhost:8000/myauthor/{{item.author}}/'>{{ item.author }}</a></p>
+    <p>Description: {{ item.description }}</p>
+    <p>Time Required: {{ item.time_required }}</p>
+    <p>Instructions: {{ item.instructions }}</p>
+</body>

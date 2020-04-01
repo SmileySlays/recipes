@@ -1,0 +1,28 @@
+<html style="background-color: rgb(86, 158, 158);">
+    <h4>This is a Submit Recipe Form</h4>
+    {% if request.user.is_staff %}
+
+        Logged in as ADMIN
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ formKey.as_p}}
+            <input type="submit" value="Submit">
+        </form>
+
+    {% else %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+                {{formKey.title}}
+                    <select>
+                        <option value="4">{{request.user}}</option>
+                    </select>
+                {{formKey.description}}
+                {{formKey.time_required}}
+                {{formKey.instructions}}
+            <input type="submit" value="Submit">
+        </form>
+
+    {% endif %}
+
+</html>

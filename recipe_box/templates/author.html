@@ -1,0 +1,17 @@
+<body style="background-color: rgb(160, 204, 160);">
+
+
+    <h2>{{ authName }} Info:</h2>
+    <div><a href="/" style="background-color: rgb(105, 189, 189);">Click me to go to homepage</a></div>
+    
+    {% for each in authDeets %}
+    <p>Recipe: <a href="http://localhost:8000/myitem/{{each.id}}/">{{each.title}}</a></p>
+    
+    {% endfor %}
+
+    <h3>Favorites</h3>
+
+    {% for favorite in author.favorites.all %}
+    <p>Favorite: <a href='http://localhost:8000/myitem/{{favorite.id}}/'> {{favorite}}</a></p>
+    {% endfor %}
+</body>
